@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "11254000000017035",
+      "name": "kayemnest",
+      "domain": {
+        "id": "50023921106",
+        "name": "kayemnest-60034404749.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60034404749",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
