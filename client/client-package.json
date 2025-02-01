@@ -1,5 +1,11 @@
 {
     "name": "sampleApp",
     "version": "0.0.1",
-    "homepage": "index.html"
+    "homepage": "index.html",
+    "pages": [
+        "index.html",
+        "RESEARCHH.html",
+        "COLLAGE.html",
+        "SCHOOL.html"
+    ]
 }

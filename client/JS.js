@@ -1,8 +1,3 @@
-
-  
-
-
-
 <script>
     // Function to show phone number on desktop or open keypad on mobile
     function showPhoneNumber() {
