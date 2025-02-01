@@ -1,3 +1,37 @@
+body {
+    font-family: "Arial", sans-serif; /* Change to your desired font */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #1ad7ae, #468ec9);
+    color: #333;
+    overflow-x: hidden;
+}
+
+.who-we-are-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.heading {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin: 0;
+}
+
+.subheading {
+    font-size: 1.125rem;
+    color: #dce7fa;
+    max-width: 40rem;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
 <style>
         /* Add the hidden class to control visibility */
         .hidden {
@@ -286,15 +320,14 @@ footer {
     }
 }
 
-/* General Styles */
-body {
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #1ad7ae, #468ec9);
-    color: #333;
-    overflow-x: hidden;
+
+
+.center-text {
+    text-align: center; /* Centers text horizontally */
+    width: 100%; /* Ensures it spans full width */
+    display: inline-block; /* Keeps the text in its own block */
 }
+
 
 /* Hero Section */
 .hero {
@@ -317,7 +350,7 @@ body {
 
 .hero .btn {
     display: inline-block;
-    background: #2196f3;
+    background: #6a6c6d;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -326,9 +359,7 @@ body {
     transition: background 0.3s ease;
 }
 
-.hero .btn:hover {
-    background: #01e1ff;
-}
+
 
 /* Responsive Grid */
 .grid {
