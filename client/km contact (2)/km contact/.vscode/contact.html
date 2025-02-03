@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: linear-gradient(to bottom, rgb(123, 228, 196), rgb(130, 203, 239));
+            color: white;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: top 0.3s;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #0056b3;
+        }
+
+        .contact-container {
+            width: 500px;
+            margin-top: 120px;
+            padding: 30px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            opacity: 1; /* Ensure it's visible initially */
+            transform: translateY(0); /* Remove any transform */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            overflow: hidden;
+        }
+
+        .contact-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-container .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            align-items: center;
+        }
+
+        .contact-container label {
+            margin: 0;
+            font-weight: 600;
+            width: 120px; /* Adjust label width */
+            text-align: left;
+        }
+
+        .contact-container input, .contact-container textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 70%; /* Adjust input width */
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .contact-container input:focus, .contact-container textarea:focus {
+            border-color: #74ebd5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(116, 235, 213, 0.5);
+        }
+
+        .contact-container button {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .contact-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Confirmation Message */
+        .confirmation-message {
+            margin-top: 15px;
+            color: green;
+            font-weight: 600;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <img src="KM_NESR-removebg-preview.png" alt="Kayem Nest Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#WHO">Who We Are</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Contact Page Content -->
+    <div class="contact-container" id="contact-container">
+        <h2>Contact Us</h2>
+        <form id="contact-form" method="POST">
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" id="phone_number" name="phone_number" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit">Send Message</button>
+            <p id="confirmation" class="confirmation-message"></p> <!-- Confirmation Message -->
+        </form>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDpBMZbeOcJ2SI7JyX6P1qX9PM0d73XNk4",
+          authDomain: "kmnst-eff61.firebaseapp.com",
+          projectId: "kmnst-eff61",
+          storageBucket: "kmnst-eff61.firebasestorage.app",
+          messagingSenderId: "13026343484",
+          appId: "1:13026343484:web:582a61761b851c67d0a139",
+          measurementId: "G-ZMPSDP4VEM"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        
+        // Initialize Firestore
+        const db = getFirestore(app);
+
+        // Function to save contact data to Firestore
+        async function saveContactData(name, email, phone, message) {
+          try {
+            const docRef = await addDoc(collection(db, "contacts"), {
+              name: name,
+              email: email,
+              phone: phone,
+              message: message,
+              timestamp: new Date()
+            });
+            console.log("Document written with ID: ", docRef.id);
+            return true;
+          } catch (e) {
+            console.error("Error adding document: ", e);
+            return false;
+          }
+        }
+
+        // Wait for the document to load and set up form submission handling
+        document.addEventListener("DOMContentLoaded", function () {
+          const contactForm = document.getElementById("contact-form");
+          const confirmationMessage = document.getElementById("confirmation");
+          
+          // Listen for form submit
+          contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            // Disable the form to prevent multiple submissions
+            const formElements = contactForm.elements;
+            for (let i = 0; i < formElements.length; i++) {
+              formElements[i].disabled = true;
+            }
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone_number").value;
+            const message = document.getElementById("message").value;
+
+            // Call function to save data to Firestore
+            const success = await saveContactData(name, email, phone, message);
+
+            // Provide feedback to user
+            if (success) {
+              confirmationMessage.textContent = "Your message has been sent successfully!";
+              confirmationMessage.style.color = "green";
+            } else {
+              confirmationMessage.textContent = "There was an error sending your message. Please try again.";
+              confirmationMessage.style.color = "red";
+            }
+
+            // Enable the form after submission
+            for (let i = 0; i < formElements.length; i++) {
+              formElements[i].disabled = false;
+            }
+
+            // Optionally, reset the form after submission
+            contactForm.reset();
+          });
+        });
+    </script>
+</body>
+</html>
