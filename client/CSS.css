@@ -482,13 +482,4 @@ footer .contact-icons {
     }
 }
 
-/* Progress Bar */
-#progressBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 4px;
-    background: #000000;
-    z-index: 1000;
-}
+
